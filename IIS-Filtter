@@ -1,0 +1,22 @@
+#Logstatsh filtter for IIS logs 
+#Path %SystemDrive%\inetpub\logs\LogFiles 
+#Fields: date time s-ip cs-method cs-uri-stem cs-uri-query s-port cs-username c-ip cs(User-Agent) cs(Referer) sc-status sc-substatus sc-win32-status time-taken
+
+input {
+	file {
+	path => "/ELK/IIS-logs/*.log"
+	}
+}
+
+filter {
+   grok {
+     match => { "message" => "%{TIMESTAMP_ISO8601:log_timestamp} %{IPORHOST:S-IP} %{WORD:CS-Method} %{URIPATH:CS-URI-Stem} %{NOTSPACE:cs-uri-query} %{NUMBER:S-Port} %{NOTSPACE:CS-Username} %{IPORHOST:C-IP} %{NOTSPACE:CS-UserAgent} %{NOTSPACE:CS-Referer} %{NUMBER:SC-Status} %{NUMBER:SC-SubStatus} %{NUMBER:SC-Win32-Status} %{NUMBER:Time-Taken}"}
+  }
+}
+
+output {
+	elasticsearch {
+	hosts => "localhost:9200"
+	index => "iis"
+	}
+}
