@@ -4,7 +4,7 @@
 
 input {
 	file {
-	path => "/inetpub/logs/LogFiles/W3SVC/*.log"
+	path => "/inetpub/logs/LogFiles/W3SVC1/*.log"
 	}
 }
 
