@@ -4,7 +4,7 @@
 
 input {
 	file {
-	path => "/ELK/IIS-logs/*.log"
+	path => "/inetpub/logs/LogFiles/W3SVC/*.log"
 	}
 }
 
