@@ -1,1 +1,1 @@
-#Logstash fileter for Internet Information Services (IIS) for Windows Server
+#Logstash fileter to parsing Internet Information Services (IIS) for Windows Server
